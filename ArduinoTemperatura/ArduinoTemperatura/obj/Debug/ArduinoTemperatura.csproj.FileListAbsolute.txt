@@ -72,3 +72,13 @@ E:\CEI DOI SICA\ArduinoTemperatura\ArduinoTemperatura\obj\Debug\ArduinoTemperatu
 E:\CEI DOI SICA\ArduinoTemperatura\ArduinoTemperatura\obj\Debug\ArduinoTemperatura.Form1.resources
 E:\CEI DOI SICA\ArduinoTemperatura\ArduinoTemperatura\obj\Debug\ArduinoTemperatura.Properties.Resources.resources
 E:\CEI DOI SICA\ArduinoTemperatura\ArduinoTemperatura\obj\Debug\ArduinoTemperatura.csproj.GenerateResource.Cache
+C:\Users\catal\Desktop\ES\CEI DOI SICA\ArduinoTemperatura\ArduinoTemperatura\bin\Debug\ArduinoTemperatura.exe.config
+C:\Users\catal\Desktop\ES\CEI DOI SICA\ArduinoTemperatura\ArduinoTemperatura\bin\Debug\ArduinoTemperatura.exe
+C:\Users\catal\Desktop\ES\CEI DOI SICA\ArduinoTemperatura\ArduinoTemperatura\bin\Debug\ArduinoTemperatura.pdb
+C:\Users\catal\Desktop\ES\CEI DOI SICA\ArduinoTemperatura\ArduinoTemperatura\obj\Debug\ArduinoTemperatura.csprojResolveAssemblyReference.cache
+C:\Users\catal\Desktop\ES\CEI DOI SICA\ArduinoTemperatura\ArduinoTemperatura\obj\Debug\ArduinoTemperatura.Form1.resources
+C:\Users\catal\Desktop\ES\CEI DOI SICA\ArduinoTemperatura\ArduinoTemperatura\obj\Debug\ArduinoTemperatura.Properties.Resources.resources
+C:\Users\catal\Desktop\ES\CEI DOI SICA\ArduinoTemperatura\ArduinoTemperatura\obj\Debug\ArduinoTemperatura.csproj.GenerateResource.Cache
+C:\Users\catal\Desktop\ES\CEI DOI SICA\ArduinoTemperatura\ArduinoTemperatura\obj\Debug\ArduinoTemperatura.csproj.CoreCompileInputs.cache
+C:\Users\catal\Desktop\ES\CEI DOI SICA\ArduinoTemperatura\ArduinoTemperatura\obj\Debug\ArduinoTemperatura.exe
+C:\Users\catal\Desktop\ES\CEI DOI SICA\ArduinoTemperatura\ArduinoTemperatura\obj\Debug\ArduinoTemperatura.pdb
