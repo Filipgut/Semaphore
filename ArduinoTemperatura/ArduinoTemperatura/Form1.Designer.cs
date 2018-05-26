@@ -169,9 +169,9 @@
             this.intermitentLED.Location = new System.Drawing.Point(16, 151);
             this.intermitentLED.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.intermitentLED.Name = "intermitentLED";
-            this.intermitentLED.Size = new System.Drawing.Size(249, 29);
+            this.intermitentLED.Size = new System.Drawing.Size(255, 29);
             this.intermitentLED.TabIndex = 5;
-            this.intermitentLED.Text = "Intermitent Right Cars:";
+            this.intermitentLED.Text = "Intermittent Right Cars:";
             this.intermitentLED.Click += new System.EventHandler(this.intermitentLED_Click);
             // 
             // intermitentLEDTextBox
