@@ -172,6 +172,7 @@
             this.intermitentLED.Size = new System.Drawing.Size(249, 29);
             this.intermitentLED.TabIndex = 5;
             this.intermitentLED.Text = "Intermitent Right Cars:";
+            this.intermitentLED.Click += new System.EventHandler(this.intermitentLED_Click);
             // 
             // intermitentLEDTextBox
             // 

@@ -15,10 +15,10 @@ namespace ArduinoTemperatura
 {
     public partial class Form1 : Form
     {
-        String motionSensorA="";
-        String carSensor="";
-        String pedestriansSensor="";
-        String intermitentLEDSensor="";
+        String Eqk="";
+        String carS="";
+        String pedestrianS="";
+        String intermitentS="";
 
         SqlConnection sql;
         int i;
@@ -88,20 +88,21 @@ namespace ArduinoTemperatura
              sql = new SqlConnection();
 
              //add path where the database is saved
-             sql.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Stud\Documents\Lab5.mdf;Integrated Security=True;Connect Timeout=30";
+             sql.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Catal\Documents\Interserction.mdf;Integrated Security=True;Connect Timeout=30";
              sql.Open();
 
 
-             SqlCommand cmd  = new SqlCommand("SELECT Id FROM CarTable", sql);
-             SqlCommand cmd2 = new SqlCommand("SELECT Id FROM MotionTable", sql);
-             SqlCommand cmd3 = new SqlCommand("SELECT Id FROM PedestriansTable", sql);
+             SqlCommand cmd  = new SqlCommand("SELECT IdCars FROM Semaphores", sql);
+             SqlCommand cmd2 = new SqlCommand("SELECT IdInter FROM Semaphores", sql);
+             SqlCommand cmd3 = new SqlCommand("SELECT IdPed FROM Semaphores", sql);
+             SqlCommand cmd4 = new SqlCommand("SELECT IdEqk FROM Semaphores", sql);
 
-             using (SqlDataReader dr = cmd.ExecuteReader())
+            using (SqlDataReader dr = cmd.ExecuteReader())
              {
                  while (dr.Read())
                  {
                      //verify if the id of the table exists or not
-                     if (dr["Id"].ToString() == null)
+                     if (dr["IdCars"].ToString() == null)
                      {
                          i = 1;
 
@@ -109,7 +110,7 @@ namespace ArduinoTemperatura
                      else
                      {
                          string sir;
-                         sir = dr["Id"].ToString();
+                         sir = dr["IdCars"].ToString();
                          i = Convert.ToInt32(sir) + 1;
                      }
                  }
@@ -120,7 +121,7 @@ namespace ArduinoTemperatura
                  while (dr2.Read())
                  {
                      //verify if the id of the table exists or not
-                     if (dr2["Id"].ToString() == null)
+                     if (dr2["IdInter"].ToString() == null)
                      {
                          j = 1;
 
@@ -128,7 +129,7 @@ namespace ArduinoTemperatura
                      else
                      {
                          string sir;
-                         sir = dr2["Id"].ToString();
+                         sir = dr2["IdInter"].ToString();
                          j = Convert.ToInt32(sir) + 1;
                      }
                  }
@@ -139,7 +140,7 @@ namespace ArduinoTemperatura
                  while (dr3.Read())
                  {
                      //verify if the id of the table exists or not
-                     if (dr3["Id"].ToString() == null)
+                     if (dr3["IdPed"].ToString() == null)
                      {
                          k = 1;
 
@@ -147,13 +148,32 @@ namespace ArduinoTemperatura
                      else
                      {
                          string sir;
-                         sir = dr3["Id"].ToString();
+                         sir = dr3["IdPed"].ToString();
                          k = Convert.ToInt32(sir) + 1;
                      }
                  }
              }
 
-             SqlCommand cmd1 = new SqlCommand();
+            using (SqlDataReader dr4 = cmd4.ExecuteReader())
+            {
+                while (dr4.Read())
+                {
+                    //verify if the id of the table exists or not
+                    if (dr4["IdEqk"].ToString() == null)
+                    {
+                        k = 1;
+
+                    }
+                    else
+                    {
+                        string sir;
+                        sir = dr4["IdEqk"].ToString();
+                        k = Convert.ToInt32(sir) + 1;
+                    }
+                }
+            }
+
+            SqlCommand cmd1 = new SqlCommand();
              SqlCommand cmd12 = new SqlCommand();
              SqlCommand cmd13 = new SqlCommand();
 
@@ -171,22 +191,22 @@ namespace ArduinoTemperatura
             stringRead = serialPort1.ReadLine().ToString();
             if (stringRead.Contains("C"))
             {
-                if (stringRead.Contains("GREEN")) carSensor = "GREEN";
-                if (stringRead.Contains("YELLOW")) carSensor = "YELLOW";
-                if (stringRead.Contains("RED")) carSensor = "RED";
+                if (stringRead.Contains("GREEN")) carS = "GREEN";
+                if (stringRead.Contains("YELLOW")) carS = "YELLOW";
+                if (stringRead.Contains("RED")) carS = "RED";
                    cmd1.Parameters.AddWithValue("@Id", i);
-                   cmd1.Parameters.AddWithValue("@Value", carSensor.ToString());
+                   cmd1.Parameters.AddWithValue("@Value", carS.ToString());
                    cmd1.Parameters.AddWithValue("@Date", Convert.ToString(dataAdaugarii));
                 cmd1.CommandText = comanda;
                 cmd1.ExecuteNonQuery();
             }
             if (stringRead.Contains("P"))
             {
-                if (stringRead.Contains("GREEN")) pedestriansSensor = "GREEN";
-                if (stringRead.Contains("RED")) pedestriansSensor = "RED";
+                if (stringRead.Contains("GREEN")) pedestrianS = "GREEN";
+                if (stringRead.Contains("RED")) pedestrianS = "RED";
 
              cmd13.Parameters.AddWithValue("@Id", k);
-                cmd13.Parameters.AddWithValue("@Value", pedestriansSensor.ToString());
+                cmd13.Parameters.AddWithValue("@Value", pedestrianS.ToString());
                  cmd13.Parameters.AddWithValue("@Date", Convert.ToString(dataAdaugarii));
                 cmd13.CommandText = comanda3;
                 cmd13.ExecuteNonQuery();
@@ -196,16 +216,16 @@ namespace ArduinoTemperatura
             if (stringRead.Contains("X"))
             {
                 Console.WriteLine("ION HELLO");
-                if(stringRead.Contains("ION")) intermitentLEDSensor = "ON";
-                if (stringRead.Contains("IOFF")) intermitentLEDSensor = "OFF";
+                if(stringRead.Contains("ION")) intermitentS = "ON";
+                if (stringRead.Contains("IOFF")) intermitentS = "OFF";
             }
           
             if (stringRead.Contains("Q"))
             {
-                if(stringRead.Contains("ON"))  motionSensorA = "Earthquake detected";
-                if (stringRead.Contains("OFF")) motionSensorA = "Earthquake not detected";
+                if(stringRead.Contains("ON"))  Eqk = "Earthquake detected";
+                if (stringRead.Contains("OFF")) Eqk = "Earthquake not detected";
                 cmd12.Parameters.AddWithValue("@Id", j);
-                cmd12.Parameters.AddWithValue("@Value", motionSensorA.ToString());
+                cmd12.Parameters.AddWithValue("@Value", Eqk.ToString());
                 cmd12.Parameters.AddWithValue("@Date", Convert.ToString(dataAdaugarii));
                 cmd12.CommandText = comanda2;
                 cmd12.ExecuteNonQuery();
@@ -226,10 +246,10 @@ namespace ArduinoTemperatura
 
 
             //ON UI:
-            intermitentLEDTextBox.Text = intermitentLEDSensor.ToString();
-            motionTextBox.Text         = motionSensorA.ToString();
-            carsColor.Text             = carSensor.ToString();
-            pedestriansColor.Text      = pedestriansSensor.ToString();
+            intermitentLEDTextBox.Text = intermitentS.ToString();
+            motionTextBox.Text         = Eqk.ToString();
+            carsColor.Text             = carS.ToString();
+            pedestriansColor.Text      = pedestrianS.ToString();
 
 
         }
@@ -258,6 +278,11 @@ namespace ArduinoTemperatura
         }
 
         private void humidityTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void intermitentLED_Click(object sender, EventArgs e)
         {
 
         }
