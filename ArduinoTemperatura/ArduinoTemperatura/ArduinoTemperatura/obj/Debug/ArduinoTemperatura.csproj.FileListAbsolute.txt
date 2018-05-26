@@ -1,0 +1,18 @@
+c:\users\mihaela\documents\visual studio 2015\Projects\ArduinoTemperatura\ArduinoTemperatura\bin\Debug\ArduinoTemperatura.exe.config
+c:\users\mihaela\documents\visual studio 2015\Projects\ArduinoTemperatura\ArduinoTemperatura\obj\Debug\ArduinoTemperatura.csprojResolveAssemblyReference.cache
+c:\users\mihaela\documents\visual studio 2015\Projects\ArduinoTemperatura\ArduinoTemperatura\obj\Debug\ArduinoTemperatura.Form1.resources
+c:\users\mihaela\documents\visual studio 2015\Projects\ArduinoTemperatura\ArduinoTemperatura\obj\Debug\ArduinoTemperatura.Properties.Resources.resources
+c:\users\mihaela\documents\visual studio 2015\Projects\ArduinoTemperatura\ArduinoTemperatura\obj\Debug\ArduinoTemperatura.csproj.GenerateResource.Cache
+c:\users\mihaela\documents\visual studio 2015\Projects\ArduinoTemperatura\ArduinoTemperatura\bin\Debug\ArduinoTemperatura.exe
+c:\users\mihaela\documents\visual studio 2015\Projects\ArduinoTemperatura\ArduinoTemperatura\bin\Debug\ArduinoTemperatura.pdb
+c:\users\mihaela\documents\visual studio 2015\Projects\ArduinoTemperatura\ArduinoTemperatura\obj\Debug\ArduinoTemperatura.exe
+c:\users\mihaela\documents\visual studio 2015\Projects\ArduinoTemperatura\ArduinoTemperatura\obj\Debug\ArduinoTemperatura.pdb
+C:\Users\Student\Desktop\ArduinoTemperatura\ArduinoTemperatura\bin\Debug\ArduinoTemperatura.exe.config
+C:\Users\Student\Desktop\ArduinoTemperatura\ArduinoTemperatura\obj\Debug\ArduinoTemperatura.exe
+C:\Users\Student\Desktop\ArduinoTemperatura\ArduinoTemperatura\obj\Debug\ArduinoTemperatura.pdb
+C:\Users\Student\Desktop\ArduinoTemperatura\ArduinoTemperatura\bin\Debug\ArduinoTemperatura.exe
+C:\Users\Student\Desktop\ArduinoTemperatura\ArduinoTemperatura\bin\Debug\ArduinoTemperatura.pdb
+C:\Users\Student\Desktop\ArduinoTemperatura\ArduinoTemperatura\obj\Debug\ArduinoTemperatura.csprojResolveAssemblyReference.cache
+C:\Users\Student\Desktop\ArduinoTemperatura\ArduinoTemperatura\obj\Debug\ArduinoTemperatura.Form1.resources
+C:\Users\Student\Desktop\ArduinoTemperatura\ArduinoTemperatura\obj\Debug\ArduinoTemperatura.Properties.Resources.resources
+C:\Users\Student\Desktop\ArduinoTemperatura\ArduinoTemperatura\obj\Debug\ArduinoTemperatura.csproj.GenerateResource.Cache
