@@ -79,7 +79,7 @@ void start(){
     digitalWrite(BIred,LOW);
   }
 void cars(){
-   Serial.println("CarS OFF");
+   Serial.println("CarS RED");
   eqK();
   digitalWrite(RGBred,HIGH);
   eqK();
@@ -92,15 +92,17 @@ void cars(){
   eqK();
   digitalWrite(RGBgreen,HIGH);
   for(int i=0;i<30;i++){
-   Serial.println("Cars ON");
+   Serial.println("Cars GREEN");
     eqK();
     digitalWrite(RGBgreen,HIGH);
     delay(500); 
-    Serial.println("CarS OFF");
   }  
   
+  
   eqK();
+  Serial.println("Cars RED");
   digitalWrite(RGBred,HIGH);
+  Serial.println("Cars RED");
   eqK();
   delay(3000);
   eqK();
