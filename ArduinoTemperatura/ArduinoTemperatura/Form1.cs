@@ -58,18 +58,10 @@ namespace ArduinoTemperatura
             {
                 if (!serialPort1.IsOpen)
                     serialPort1.Open();
-                string x = carsTimer.Text.ToString();
-
-                string y = pedestriansTimer.Text.ToString();
-                string z = intermitentTimer.Text.ToString();
-
-                string toReturn = x + " " + y + " " + z;
-
-                serialPort1.Write(toReturn); //send 1 to Arduino
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Port not open!");
             }
 
         }
@@ -161,73 +153,81 @@ namespace ArduinoTemperatura
                     //verify if the id of the table exists or not
                     if (dr4["IdEqk"].ToString() == null)
                     {
-                        k = 1;
+                        l = 1;
 
                     }
                     else
                     {
                         string sir;
                         sir = dr4["IdEqk"].ToString();
-                        k = Convert.ToInt32(sir) + 1;
+                        l = Convert.ToInt32(sir) + 1;
                     }
                 }
             }
 
             SqlCommand cmd1 = new SqlCommand();
-             SqlCommand cmd12 = new SqlCommand();
-             SqlCommand cmd13 = new SqlCommand();
+            SqlCommand cmd12 = new SqlCommand();
+            SqlCommand cmd13 = new SqlCommand();
+            SqlCommand cmd14 = new SqlCommand();
 
-             cmd1.Connection = sql;
-             cmd12.Connection = sql;
-             cmd13.Connection = sql;
+            cmd1.Connection = sql;
+            cmd12.Connection = sql;
+            cmd13.Connection = sql;
+            cmd14.Connection = sql;
 
 
 
-            string comanda = string.Format("INSERT into CarTable VALUES (@Id, @Value, @Date)");
-             string comanda2 = string.Format("INSERT into MotionTable VALUES (@Id, @Value, @Date)");
-             string comanda3 = string.Format("INSERT into PedestriansTable VALUES (@Id, @Value, @Date)");
+            string comanda = string.Format("INSERT into Intersection VALUES (@IdCars, @ValueCars, @Date)");
+            string comanda2 = string.Format("INSERT into Intersection VALUES (@IdInter, @ValueInter, @Date)");
+            string comanda3 = string.Format("INSERT into Intersection VALUES (@IdPed, @ValuePed, @Date)");
+            string comanda4 = string.Format("INSERT into Intersection VALUES (@IdEqk, @ValueEqk, @Date)");
  
             String stringRead;
             stringRead = serialPort1.ReadLine().ToString();
-            if (stringRead.Contains("C"))
+            if (stringRead.Contains("CarS"))
             {
                 if (stringRead.Contains("GREEN")) carS = "GREEN";
                 if (stringRead.Contains("YELLOW")) carS = "YELLOW";
                 if (stringRead.Contains("RED")) carS = "RED";
-                   cmd1.Parameters.AddWithValue("@Id", i);
-                   cmd1.Parameters.AddWithValue("@Value", carS.ToString());
+                   cmd1.Parameters.AddWithValue("@IdCars", i);
+                   cmd1.Parameters.AddWithValue("@ValueCars", carS.ToString());
                    cmd1.Parameters.AddWithValue("@Date", Convert.ToString(dataAdaugarii));
                 cmd1.CommandText = comanda;
                 cmd1.ExecuteNonQuery();
             }
-            if (stringRead.Contains("P"))
+            if (stringRead.Contains("Pedestrian"))
             {
-                if (stringRead.Contains("GREEN")) pedestrianS = "GREEN";
-                if (stringRead.Contains("RED")) pedestrianS = "RED";
+                if (stringRead.Contains("ON")) pedestrianS = "GREEN";
+                if (stringRead.Contains("OFF")) pedestrianS = "RED";
 
-             cmd13.Parameters.AddWithValue("@Id", k);
-                cmd13.Parameters.AddWithValue("@Value", pedestrianS.ToString());
-                 cmd13.Parameters.AddWithValue("@Date", Convert.ToString(dataAdaugarii));
+                cmd13.Parameters.AddWithValue("@IdPed", k);
+                cmd13.Parameters.AddWithValue("@ValuePed", pedestrianS.ToString());
+                cmd13.Parameters.AddWithValue("@Date", Convert.ToString(dataAdaugarii));
                 cmd13.CommandText = comanda3;
                 cmd13.ExecuteNonQuery();
             }
 
 
-            if (stringRead.Contains("X"))
+            if (stringRead.Contains("IntermitentG"))
             {
-                Console.WriteLine("ION HELLO");
-                if(stringRead.Contains("ION")) intermitentS = "ON";
-                if (stringRead.Contains("IOFF")) intermitentS = "OFF";
+                if(stringRead.Contains("ON")) intermitentS = "ON";
+                if (stringRead.Contains("OFF")) intermitentS = "OFF";
+                cmd14.Parameters.AddWithValue("@IdInter", k);
+                cmd14.Parameters.AddWithValue("@ValueInter", pedestrianS.ToString());
+                cmd14.Parameters.AddWithValue("@Date", Convert.ToString(dataAdaugarii));
+                cmd14.CommandText = comanda2;
+                cmd14.ExecuteNonQuery();
+
             }
           
-            if (stringRead.Contains("Q"))
+            if (stringRead.Contains("EarthQ"))
             {
                 if(stringRead.Contains("ON"))  Eqk = "Earthquake detected";
                 if (stringRead.Contains("OFF")) Eqk = "Earthquake not detected";
-                cmd12.Parameters.AddWithValue("@Id", j);
-                cmd12.Parameters.AddWithValue("@Value", Eqk.ToString());
+                cmd12.Parameters.AddWithValue("@IdEqk", j);
+                cmd12.Parameters.AddWithValue("@ValueEqk", Eqk.ToString());
                 cmd12.Parameters.AddWithValue("@Date", Convert.ToString(dataAdaugarii));
-                cmd12.CommandText = comanda2;
+                cmd12.CommandText = comanda4;
                 cmd12.ExecuteNonQuery();
             }
         
@@ -283,6 +283,11 @@ namespace ArduinoTemperatura
         }
 
         private void intermitentLED_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void motionTextBox_TextChanged(object sender, EventArgs e)
         {
 
         }

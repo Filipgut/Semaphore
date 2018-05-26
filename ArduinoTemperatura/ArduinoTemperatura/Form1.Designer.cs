@@ -203,6 +203,7 @@
             this.motionTextBox.Name = "motionTextBox";
             this.motionTextBox.Size = new System.Drawing.Size(265, 34);
             this.motionTextBox.TabIndex = 6;
+            this.motionTextBox.TextChanged += new System.EventHandler(this.motionTextBox_TextChanged);
             // 
             // timer1
             // 
