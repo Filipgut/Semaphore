@@ -47,7 +47,7 @@ namespace ArduinoTemperatura
         {
             string x = comboBox1.SelectedItem.ToString();
             serialPort1.PortName = x;
-            serialPort1.BaudRate = 9600;
+            serialPort1.BaudRate = 115200;
             MessageBox.Show("Port was selected!");
         }
 
@@ -80,7 +80,8 @@ namespace ArduinoTemperatura
              sql = new SqlConnection();
 
              //add path where the database is saved
-             sql.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Catal\Documents\Interserction.mdf;Integrated Security=True;Connect Timeout=30";
+             sql.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\catal\Documents\Intersection.mdf;Integrated Security=True;Connect Timeout=30";
+             sql.Close();
              sql.Open();
 
 
@@ -177,11 +178,11 @@ namespace ArduinoTemperatura
 
 
 
-            string comanda = string.Format("INSERT into Intersection VALUES (@IdCars, @ValueCars, @Date)");
-            string comanda2 = string.Format("INSERT into Intersection VALUES (@IdInter, @ValueInter, @Date)");
-            string comanda3 = string.Format("INSERT into Intersection VALUES (@IdPed, @ValuePed, @Date)");
-            string comanda4 = string.Format("INSERT into Intersection VALUES (@IdEqk, @ValueEqk, @Date)");
- 
+            string comanda = string.Format("INSERT into Semaphores VALUES (@IdCars, @IdInter, @IdPed, @IdEqk, @Date, @ValueCars, @ValueInter, @ValuePed, @ValueEqk)");
+            string comanda2 = string.Format("INSERT into Semaphores VALUES (@IdCars, @IdInter, @IdPed, @IdEqk, @Date, @ValueCars, @ValueInter, @ValuePed, @ValueEqk)");
+            string comanda3 = string.Format("INSERT into Semaphores VALUES (@IdCars, @IdInter, @IdPed, @IdEqk, @Date, @ValueCars, @ValueInter, @ValuePed, @ValueEqk)");
+            string comanda4 = string.Format("INSERT into Semaphores VALUES (@IdCars, @IdInter, @IdPed, @IdEqk, @Date, @ValueCars, @ValueInter, @ValuePed, @ValueEqk)");
+
             String stringRead;
             stringRead = serialPort1.ReadLine().ToString();
             if (stringRead.Contains("CarS"))
@@ -189,9 +190,15 @@ namespace ArduinoTemperatura
                 if (stringRead.Contains("GREEN")) carS = "GREEN";
                 if (stringRead.Contains("YELLOW")) carS = "YELLOW";
                 if (stringRead.Contains("RED")) carS = "RED";
-                   cmd1.Parameters.AddWithValue("@IdCars", i);
-                   cmd1.Parameters.AddWithValue("@ValueCars", carS.ToString());
-                   cmd1.Parameters.AddWithValue("@Date", Convert.ToString(dataAdaugarii));
+                cmd1.Parameters.AddWithValue("@IdCars", i);
+                cmd1.Parameters.AddWithValue("@IdPed", k);
+                cmd1.Parameters.AddWithValue("@IdEqk", l);
+                cmd1.Parameters.AddWithValue("@IdInter", j);
+                cmd1.Parameters.AddWithValue("@ValueCars", carS.ToString());
+                cmd1.Parameters.AddWithValue("@ValuePed", " ");
+                cmd1.Parameters.AddWithValue("@ValueEqk", " ");
+                cmd1.Parameters.AddWithValue("@ValueInter", " ");
+                cmd1.Parameters.AddWithValue("@Date", Convert.ToString(dataAdaugarii));
                 cmd1.CommandText = comanda;
                 cmd1.ExecuteNonQuery();
             }
@@ -200,8 +207,14 @@ namespace ArduinoTemperatura
                 if (stringRead.Contains("ON")) pedestrianS = "GREEN";
                 if (stringRead.Contains("OFF")) pedestrianS = "RED";
 
+                cmd13.Parameters.AddWithValue("@IdCars", i);
                 cmd13.Parameters.AddWithValue("@IdPed", k);
+                cmd13.Parameters.AddWithValue("@IdEqk", l);
+                cmd13.Parameters.AddWithValue("@IdInter", j);
                 cmd13.Parameters.AddWithValue("@ValuePed", pedestrianS.ToString());
+                cmd13.Parameters.AddWithValue("@ValueCars", " ");
+                cmd13.Parameters.AddWithValue("@ValueInter", " ");
+                cmd13.Parameters.AddWithValue("@ValueEqk", " ");
                 cmd13.Parameters.AddWithValue("@Date", Convert.ToString(dataAdaugarii));
                 cmd13.CommandText = comanda3;
                 cmd13.ExecuteNonQuery();
@@ -212,8 +225,14 @@ namespace ArduinoTemperatura
             {
                 if(stringRead.Contains("ON")) intermitentS = "ON";
                 if (stringRead.Contains("OFF")) intermitentS = "OFF";
-                cmd14.Parameters.AddWithValue("@IdInter", k);
+                cmd14.Parameters.AddWithValue("@IdCars", i);
+                cmd14.Parameters.AddWithValue("@IdPed", k);
+                cmd14.Parameters.AddWithValue("@IdEqk", l);
+                cmd14.Parameters.AddWithValue("@IdInter", j);
                 cmd14.Parameters.AddWithValue("@ValueInter", pedestrianS.ToString());
+                cmd14.Parameters.AddWithValue("@ValueCars", " ");
+                cmd14.Parameters.AddWithValue("@ValuePed", " ");
+                cmd14.Parameters.AddWithValue("@ValueEqk", " ");
                 cmd14.Parameters.AddWithValue("@Date", Convert.ToString(dataAdaugarii));
                 cmd14.CommandText = comanda2;
                 cmd14.ExecuteNonQuery();
@@ -224,7 +243,13 @@ namespace ArduinoTemperatura
             {
                 if(stringRead.Contains("ON"))  Eqk = "Earthquake detected";
                 if (stringRead.Contains("OFF")) Eqk = "Earthquake not detected";
-                cmd12.Parameters.AddWithValue("@IdEqk", j);
+                cmd12.Parameters.AddWithValue("@IdCars", i);
+                cmd12.Parameters.AddWithValue("@IdPed", k);
+                cmd12.Parameters.AddWithValue("@IdEqk", l);
+                cmd12.Parameters.AddWithValue("@IdInter", j);
+                cmd12.Parameters.AddWithValue("@ValueCars", " ");
+                cmd12.Parameters.AddWithValue("@ValuePed", " ");
+                cmd12.Parameters.AddWithValue("@ValueInter", " ");
                 cmd12.Parameters.AddWithValue("@ValueEqk", Eqk.ToString());
                 cmd12.Parameters.AddWithValue("@Date", Convert.ToString(dataAdaugarii));
                 cmd12.CommandText = comanda4;
