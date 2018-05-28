@@ -91,8 +91,8 @@ void cars(){
   digitalWrite(RGBred,LOW);
   eqK();
   digitalWrite(RGBgreen,HIGH);
+  Serial.println("CarS GREEN");
   for(int i=0;i<30;i++){
-   Serial.println("Cars GREEN");
     eqK();
     digitalWrite(RGBgreen,HIGH);
     delay(500); 
@@ -100,18 +100,18 @@ void cars(){
   
   
   eqK();
-  Serial.println("Cars RED");
+  Serial.println("CarS YELLOW");
   digitalWrite(RGBred,HIGH);
-  Serial.println("Cars RED");
   eqK();
   delay(3000);
   eqK();
+  Serial.println("CarS RED");
   digitalWrite(RGBgreen,LOW);
   eqK();  
   }
 
 void rightG(){  
-  Serial.print("IntermitentG ON");
+  Serial.println("IntermitentG ON");
   for(int i=0;i<10;i++){
     eqK();
     if(i==1){
